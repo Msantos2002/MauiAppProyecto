@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiAppProyecto"
+             x:Class="MauiAppProyecto.MainPage">
+    <StackLayout Padding="20">
+        <Label Text="Lista de Productos" FontSize="24" HorizontalOptions="Center" />
+        <CollectionView x:Name="DataList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Padding="10">
+                        <Label Text="{Binding Name}" FontSize="18" />
+                        <Label Text="{Binding Price, StringFormat='Precio: {0:C}'}" FontSize="18" Margin="10,0,0,0" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

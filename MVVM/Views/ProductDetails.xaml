@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppProyecto.MVVM.Views.ProductDetails"
+             xmlns:viewmodel="clr-namespace:MauiAppProyecto.MVVM.ViewModels"
+             xmlns:models="clr-namespace:MauiAppProyecto.MVVM.Models"
+             Title="ProductDetails">
+    <VerticalStackLayout x:DataType="viewmodel:ProductDetailViewModel" Padding="0,10">
+        <CarouselView HeightRequest="300" IndicatorView="Indicator" ItemsSource="{Binding Imagenes}" Loop="True">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:ImagenProducto">
+                    <Image Aspect="AspectFill"
+                       Source="{Binding Url}"
+                       WidthRequest="375"
+                       HeightRequest="300"/>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView x:Name="Indicator" IndicatorSize="12" VerticalOptions="CenterAndExpand" IndicatorColor="Brown" SelectedIndicatorColor="Green"></IndicatorView>
+        <Label 
+            Text="{Binding Producto.Nombre}"
+            FontSize="Large"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+
+        <Label 
+            Text="{Binding Producto.Descripcion}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Categoria:  " FontAttributes="Bold"/>
+            <Label 
+                Text="{Binding Producto.Categoria.Nombre}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Precio:  $" FontAttributes="Bold"/>
+            <Label 
+                Text="{Binding Producto.Precio}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Stock:  " FontAttributes="Bold"/>
+            <Label 
+                Text="{Binding Producto.Stock}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+
+        <VerticalStackLayout Margin="0,40,0,0">
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button Command="{Binding RestarCommand}" Text="-" FontSize="Large" FontAttributes="Bold" WidthRequest="65"/>
+                <Frame>
+                    <Label Text="{Binding Cantidad}"/>
+                </Frame>
+                <Button Command="{Binding AumentarCommand}" Text="+" FontSize="Large" WidthRequest="65"/>
+            </HorizontalStackLayout>
+            <Button Command="{Binding ComprarCommand}" Text="Comprar" Margin="7"/>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

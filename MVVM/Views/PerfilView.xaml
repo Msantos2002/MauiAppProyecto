@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppProyecto.MVVM.Views.PerfilView"
+             xmlns:viewmodel="clr-namespace:MauiAppProyecto.MVVM.ViewModels"
+             x:DataType="viewmodel:PerfilViewModel"
+             xmlns:model="clr-namespace:MauiAppProyecto.MVVM.Models"
+             Title="PerfilView">
+    <Grid Padding="10" Margin="20" RowDefinitions="60,*,*" >
+        <VerticalStackLayout Grid.Row="0">
+
+            <Label
+                Text="{Binding Usuario.Nombre}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Puntos:   " FontAttributes="Bold" />
+                <Label 
+                    Text="{Binding Usuario.Puntos}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+
+
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Compras}">
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate x:DataType="model:Compra">
+                    <Frame Margin="0,5">
+                        <VerticalStackLayout>
+                            <HorizontalStackLayout>
+                                <Label Text="Fecha Compra:  " FontAttributes="Bold"/>
+                                <Label Text="{Binding Fecha}"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout >
+                                <Label Text="Nombre Producto:   " FontAttributes="Bold"/>
+                                <Label Text="{Binding Producto.Nombre}"/>
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout >
+                                <Label Text="Cantidad:   " FontAttributes="Bold"/>
+                                <Label Text="{Binding Cantidad}"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Grid.Row="2" HeightRequest="50" Margin="10" Text="Logout" Command="{Binding LogoutCommand}"/>
+    </Grid>
+
+</ContentPage>
