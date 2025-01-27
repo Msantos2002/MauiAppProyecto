@@ -3,28 +3,44 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using MauiAppProyecto.Services;
 namespace MauiAppProyecto;
+using MauiAppProyecto.MVVM.ViewModels;
+using MauiAppProyecto.MVVM.Views;
+using MauiAppProyecto.Services;
+using Microsoft.Extensions.Logging;
 
-public static class MauiProgram
-{
-    public static MauiApp CreateMauiApp()
+
+    public static class MauiProgram
     {
-        var builder = MauiApp.CreateBuilder();
-        builder
-            .UseMauiApp<App>()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-            });
-
-        // Registrar HttpClient con la URL base de la API
-        builder.Services.AddHttpClient("ApiClient", client =>
+        public static MauiApp CreateMauiApp()
         {
-            client.BaseAddress = new System.Uri("https://localhost:7181"); // URL base de tu API
-        });
-        // Registrar el servicio de la API
-        builder.Services.AddTransient<ApiService>();
+            var builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                });
 
-        return builder.Build();
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
+            builder.Services.AddSingleton<ProductosService>();
+            builder.Services.AddSingleton<AuthService>();
+            builder.Services.AddSingleton<ComprasService>();
+
+            builder.Services.AddTransient<LoginPage>();
+
+            builder.Services.AddSingleton<ProductosViewModel>();
+            builder.Services.AddSingleton<ProductsView>();
+            builder.Services.AddTransient<LoginUserViewModel>();
+
+            builder.Services.AddTransient<ProductDetails>();
+            builder.Services.AddTransient<ProductDetailViewModel>();
+            builder.Services.AddTransient<PerfilViewModel>();
+            builder.Services.AddTransient<PerfilView>();
+            builder.Services.AddTransient<RegisterView>();
+            builder.Services.AddTransient<RegisterViewModel>();
+            return builder.Build();
+        }
     }
-}

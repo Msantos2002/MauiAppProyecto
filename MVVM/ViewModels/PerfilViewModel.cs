@@ -28,7 +28,7 @@ namespace MauiAppProyecto.MVVM.ViewModels
             _comprasService = comprasService;
         }
 
-        [ICommand]
+        [RelayCommand]
         async Task Logout()
         {
             await _authService.Logout();

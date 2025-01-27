@@ -26,7 +26,7 @@ namespace MauiAppProyecto.MVVM.ViewModels
 
         }
 
-        [ICommand]
+        [RelayCommand]
         async Task RegisterAsync()
         {
             if (Password is null)
@@ -43,7 +43,7 @@ namespace MauiAppProyecto.MVVM.ViewModels
 
         }
 
-        [ICommand]
+        [RelayCommand]
         async Task GoToLoginPageAsync()
         {
             await Shell.Current.GoToAsync($"{nameof(LoginPage)}");

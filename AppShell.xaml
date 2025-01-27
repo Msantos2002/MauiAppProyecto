@@ -3,13 +3,30 @@
     x:Class="MauiAppProyecto.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MauiAppProyecto"
-    Shell.FlyoutBehavior="Flyout"
-    Title="MauiAppProyecto">
+    xmlns:pages="clr-namespace:MauiAppProyecto.MVVM.Views"
+    FlyoutBehavior="Flyout">
+
+
+    <TabBar FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+        Title="Productos"
+        ContentTemplate="{DataTemplate pages:ProductsView}"
+        Route="ProductsView"/>
+
+    </TabBar>
+    <ShellContent
+        FlyoutItemIsVisible="False"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
+        Route="LogingPage"/>
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        FlyoutItemIsVisible="False"
+    
+        ContentTemplate="{DataTemplate pages:RegisterView}"
+        Route="RegisterView"/>
+    <ShellContent
+        Title="Perfil"
+        ContentTemplate="{DataTemplate pages:PerfilView}"
+        Route="PerfilView"/>
 
 </Shell>

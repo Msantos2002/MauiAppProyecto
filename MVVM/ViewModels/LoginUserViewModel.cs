@@ -26,7 +26,7 @@ namespace MauiAppProyecto.MVVM.ViewModels
 
         }
 
-        [ICommand]
+        [RelayCommand]
         async Task LoginAsync()
         {
             if (Password is null)
@@ -42,7 +42,7 @@ namespace MauiAppProyecto.MVVM.ViewModels
             await _authService.Login(Nombre, Password);
         }
 
-        [ICommand]
+        [RelayCommand]
         async Task GoToRegisterAsync()
         {
             await Shell.Current.GoToAsync($"{nameof(RegisterView)}");

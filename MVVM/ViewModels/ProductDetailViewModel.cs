@@ -35,19 +35,19 @@ namespace MauiAppProyecto.MVVM.ViewModels
 
         }
 
-        [ICommand]
+        [RelayCommand]
         async Task ComprarAsync()
         {
             await _comprasService.Comprar(Cantidad, Producto.Id);
         }
 
-        [ICommand]
+        [RelayCommand]
         void Aumentar()
         {
             Cantidad += 1;
         }
 
-        [ICommand]
+        [RelayCommand]
         void Restar()
         {
             if (Cantidad > 1)

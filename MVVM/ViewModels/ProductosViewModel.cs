@@ -21,7 +21,7 @@ namespace MauiAppProyecto.MVVM.ViewModels
             _productosService = productosService;
             Tittle = "Productos";
         }
-        [ICommand]
+        [RelayCommand]
         async Task GoToDetailsAsync(int id)
         {
             if (id == 0)
